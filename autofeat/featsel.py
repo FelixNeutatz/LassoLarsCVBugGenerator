@@ -61,7 +61,11 @@ def select_features(df, target, df_scaled=False, max_it=100, eps=1e-16):
             warnings.simplefilter("ignore")
             reg = lm.LassoLarsCV(eps=eps)
             X = df[good_cols].values
-            reg.fit(X, target)
+            try:
+                reg.fit(X, target)
+            except:
+                np.save('/tmp/X_error', X)
+                np.save('/tmp/target_error', target)
         new_target = target - reg.predict(X)
         residual = np.mean(np.abs(new_target))
         # update the good columns based on the regression coefficients

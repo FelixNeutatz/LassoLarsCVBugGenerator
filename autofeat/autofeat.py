@@ -14,8 +14,8 @@ import sklearn.linear_model as lm
 from sympy.utilities.autowrap import ufuncify
 import pint
 
-from .feateng import generate_features, n_cols_generated
-from .featsel import select_features
+from feateng import generate_features, n_cols_generated
+from featsel import select_features
 
 
 def _parse_units(units, ureg=None):
